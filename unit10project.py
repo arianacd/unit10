@@ -4,20 +4,22 @@
 
 import pygame, sys
 from pygame.locals import *
-
+import target
 pygame.init()
 main_surface = pygame.display.set_mode((500, 500), 0, 32)
-
-
-def target_circle():
-    pygame.draw.circle(main_surface, (0, 0, 0), (250, 250), 250, 2)
-    pygame.draw.circle(main_surface, (255, 255, 255), (250, 250), 220, 24)
-
-
-target_circle()
-
 pygame.display.set_caption("Target")
-main_surface.fill((255, 255, 255))
+
+WHITE = (255, 255, 255)
+BLACK = (0, 0, 0)
+BLUE = (0, 0, 255)
+RED = (255, 0, 0)
+YELLOW = (255, 255, 0)
+main_surface.fill(WHITE)
+my_target = target.Target(main_surface)
+circles = [(BLACK, 151, 2), (WHITE, 150, 30), (BLACK, 120, 30), (BLUE, 90, 30), (RED, 60, 30), (YELLOW, 30, 0)]
+for x in circles:
+    my_target.target_circle(x)
+
 
 while True:
     pygame.display.update()
