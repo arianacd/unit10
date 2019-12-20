@@ -9,12 +9,12 @@ pygame.init()
 main_surface = pygame.display.set_mode((500, 500), 0, 32)
 pygame.display.set_caption("Target")
 
-WHITE = (255, 255, 255)
+WHITE = (255, 255, 254)
 BLACK = (0, 0, 0)
 BLUE = (0, 0, 255)
 RED = (255, 0, 0)
 YELLOW = (255, 255, 0)
-main_surface.fill(WHITE)
+main_surface.fill(255, 255, 255)
 my_target = target.Target(main_surface)
 circles = [(BLACK, 151, 2), (WHITE, 150, 30), (BLACK, 120, 30), (BLUE, 90, 30), (RED, 60, 30), (YELLOW, 30, 0)]
 for x in circles:
@@ -27,3 +27,5 @@ while True:
         if event.type == QUIT:
             pygame.quit()
             sys.exit()
+        if event.type == MOUSEBUTTONDOWN:
+            my_target.get_score(pygame.mouse.get_pos())
