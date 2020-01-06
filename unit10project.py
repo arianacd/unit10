@@ -14,12 +14,13 @@ BLACK = (0, 0, 0)
 BLUE = (0, 0, 255)
 RED = (255, 0, 0)
 YELLOW = (255, 255, 0)
-main_surface.fill(255, 255, 255)
+main_surface.fill((255, 255, 255))
 my_target = target.Target(main_surface)
 circles = [(BLACK, 151, 2), (WHITE, 150, 30), (BLACK, 120, 30), (BLUE, 90, 30), (RED, 60, 30), (YELLOW, 30, 0)]
 for x in circles:
     my_target.target_circle(x)
 
+num_clicks = 0
 
 while True:
     pygame.display.update()
@@ -27,5 +28,10 @@ while True:
         if event.type == QUIT:
             pygame.quit()
             sys.exit()
-        if event.type == MOUSEBUTTONDOWN:
+        if event.type == MOUSEBUTTONDOWN and num_clicks < 5:
             my_target.get_score(pygame.mouse.get_pos())
+            num_clicks += 1
+
+
+
+            # make it shoot only 5 arrows

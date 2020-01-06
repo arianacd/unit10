@@ -1,5 +1,10 @@
 import pygame
-import unit10project
+
+WHITE = (255, 255, 254)
+BLACK = (0, 0, 0)
+BLUE = (0, 0, 255)
+RED = (255, 0, 0)
+YELLOW = (255, 255, 0)
 
 
 class Target:
@@ -15,20 +20,26 @@ class Target:
 
     def get_score(self, position):
         target_color = self.main_surface.get_at(position)
-        if target_color == (unit10project.WHITE, 255):
+        if target_color == (255, 255, 254, 255):
             self.update_score(1)
-        elif target_color == (unit10project.BLACK, 255):
+        elif target_color == (0, 0, 0, 255):
             self.update_score(3)
-        elif target_color == (unit10project.BLUE, 255):
+        elif target_color == (0, 0, 255, 255):
             self.update_score(5)
-        elif target_color == (unit10project.RED, 255):
+        elif target_color == (255, 0, 0, 255):
             self.update_score(7)
-        elif target_color == (unit10project.YELLOW, 255):
+        elif target_color == (255, 255, 0, 255):
             self.update_score(9)
 
-
-
-
-
+    def update_score(self, score):
+        self.main_surface.fill((255, 255, 255))
+        circles = [(BLACK, 151, 2), (WHITE, 150, 30), (BLACK, 120, 30), (BLUE, 90, 30), (RED, 60, 30), (YELLOW, 30, 0)]
+        for x in circles:
+            self.target_circle(x)
+        self.score += score
+        mouse_font = pygame.font.SysFont("Helvetica", 32)
+        mouse_label = mouse_font.render(str(self.score), 1, (0, 0, 0))
+        self.main_surface.blit(mouse_label, (30, 30))
+        pygame.display.update()
 
 
