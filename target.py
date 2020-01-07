@@ -13,12 +13,22 @@ class Target:
         self.score = 0
 
     def target_circle(self, p):
+        """
+        this function draws the target circle
+        :param p: position of the circles
+        :return: nothing
+        """
         c = p[0]
         a = p[1]
         b = p[2]
         pygame.draw.circle(self.main_surface, c, (250, 250), a, b)
 
     def get_score(self, position):
+        """
+        this function gives a score to the user depending on what color they hit
+        :param position: where the user clicks
+        :return: nothing
+        """
         target_color = self.main_surface.get_at(position)
         if target_color == (255, 255, 254, 255):
             self.update_score(1)
@@ -32,6 +42,11 @@ class Target:
             self.update_score(9)
 
     def update_score(self, score):
+        """
+        this function shows the user their score after every click
+        :param score: the score of the user
+        :return: nothing
+        """
         self.main_surface.fill((255, 255, 255))
         circles = [(BLACK, 151, 2), (WHITE, 150, 30), (BLACK, 120, 30), (BLUE, 90, 30), (RED, 60, 30), (YELLOW, 30, 0)]
         for x in circles:
